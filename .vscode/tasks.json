@@ -1,0 +1,48 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    // 定义构建任务
+    
+    "version": "2.0.0",
+    "options": 
+    {
+        "cwd":"${workspaceFolder}/build"    // 任务运行时的当前工作目录
+    },
+    "tasks": 
+    [
+        {
+            "label": "cmake",      
+            "type": "shell",       
+            "command": "cmake", 
+            "args":                
+            [             
+                ".."
+            ]
+        },
+        
+        {
+            "label":"make",        
+            "type": "shell",
+            "group":                  
+            {
+                "kind": "build",     
+                "isDefault": true    
+            },
+            "command":"make",      
+            "args":               
+            [
+ 
+            ]
+        },
+        
+        {
+            "label":"Build",               // 对应launch.json里的"preLaunchTask"
+            "dependsOrder": "sequence",
+            "dependsOn":
+            [
+                "cmake",
+                "make"
+            ]
+        }
+    ]
+}
